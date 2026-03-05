@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELEMENT: Before You Begin</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f0e0c;
+    --bg2: #161410;
+    --bg3: #1e1b17;
+    --border: rgba(212,190,150,0.12);
+    --border-strong: rgba(212,190,150,0.28);
+    --gold: #c9a84c;
+    --gold-light: #e2c97e;
+    --cream: #f0e8d8;
+    --cream-dim: rgba(240,232,216,0.65);
+    --cream-muted: rgba(240,232,216,0.35);
+    --green: #4caf7d;
+    --green-bg: rgba(76,175,125,0.08);
+    --green-border: rgba(76,175,125,0.25);
+    --red: #d47b5a;
+    --red-bg: rgba(212,123,90,0.08);
+    --red-border: rgba(212,123,90,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--cream);
+    min-height: 100vh;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.35s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    max-width: 520px;
+    margin: 24px auto 52px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 38px;
+    border: 1px solid var(--border-strong);
+    background: transparent;
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.65s forwards;
+  }
+
+  .hero-cta:hover {
+    background: rgba(201,168,76,0.08);
+    border-color: var(--gold);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .scroll-hint span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 100px 32px;
+  }
+
+  .section + .section {
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 24px;
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .section-body {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    max-width: 620px;
+    margin-bottom: 48px;
+  }
+
+  /* ── THREE TRUTHS ── */
+  .truths-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .truth-card {
+    background: var(--bg3);
+    padding: 32px 28px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .truth-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .truth-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .truth-card:hover::before { opacity: 1; }
+
+  .truth-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: rgba(201,168,76,0.18);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .truth-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  .truth-body {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.65;
+  }
+
+  /* ── CONVERSATION DEMO ── */
+  .demo-wrapper {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .demo-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg3);
+  }
+
+  .demo-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border-strong);
+  }
+
+  .demo-title-bar {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+  }
+
+  .demo-body {
+    padding: 40px 36px;
+  }
+
+  /* Message bubbles */
+  .msg {
+    margin-bottom: 28px;
+    display: flex;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .msg.visible { opacity: 1; transform: translateY(0); }
+
+  .msg-avatar {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+
+  .msg-avatar.element {
+    background: rgba(201,168,76,0.12);
+    border: 1px solid var(--border-strong);
+    color: var(--gold);
+  }
+
+  .msg-avatar.user {
+    background: rgba(240,232,216,0.06);
+    border: 1px solid var(--border);
+    color: var(--cream-muted);
+  }
+
+  .msg-content { flex: 1; }
+
+  .msg-sender {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .msg-sender.element { color: var(--gold); }
+  .msg-sender.user { color: var(--cream-muted); }
+
+  .msg-text {
+    font-size: 14.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.7;
+  }
+
+  .msg-text strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* MCQ interlude */
+  .mcq-block {
+    border: 1px solid var(--border-strong);
+    border-left: 3px solid var(--gold);
+    margin: 8px 0 28px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s, transform 0.4s;
+    overflow: hidden;
+  }
+
+  .mcq-block.visible { opacity: 1; transform: translateY(0); }
+
+  .mcq-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    background: var(--bg3);
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    gap: 12px;
+  }
+
+  .mcq-toggle:hover { background: rgba(201,168,76,0.06); }
+
+  .mcq-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mcq-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+  }
+
+  .mcq-toggle-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--cream-muted);
+    text-transform: uppercase;
+  }
+
+  .mcq-arrow {
+    font-size: 11px;
+    color: var(--gold);
+    opacity: 0.7;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
+  .mcq-block.expanded .mcq-arrow { transform: rotate(180deg); }
+
+  .mcq-body {
+    background: var(--bg);
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.25s ease;
+  }
+
+  .mcq-block.expanded .mcq-body {
+    max-height: 800px;
+    padding: 20px 20px 0;
+  }
+
+  .mcq-question {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .mcq-options {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 20px;
+  }
+
+  .mcq-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 13.5px;
+    color: var(--cream-dim);
+    font-weight: 300;
+  }
+
+  .mcq-option:hover, .mcq-option.selected {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.06);
+    color: var(--cream);
+  }
+
+  .mcq-option .opt-letter {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    flex-shrink: 0;
+    width: 16px;
+  }
+
+  .mcq-followup {
+    border-top: 1px solid var(--border);
+    padding: 16px 0 20px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .mcq-followup-avatar {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid var(--border-strong);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    color: var(--gold);
+  }
+
+  .mcq-followup-text {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.7;
+    padding-top: 4px;
+  }
+
+  /* Demo header subtitle */
+  .demo-header-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .demo-title-bar {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+  }
+
+  .demo-subtitle-bar {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.75;
+  }
+
+  /* ── RESPONSE COMPARISON ── */
+  .comparison-section { margin-top: 64px; }
+
+  .comparison-intro {
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    max-width: 580px;
+    margin-bottom: 40px;
+  }
+
+  .comparison-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+    gap: 0;
+  }
+
+  .comp-tab {
+    padding: 14px 28px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--cream-muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.25s;
+    margin-bottom: -1px;
+  }
+
+  .comp-tab.active {
+    color: var(--cream);
+    border-bottom-color: var(--gold);
+  }
+
+  .comp-tab:hover:not(.active) { color: var(--cream-dim); }
+
+  .comp-panel {
+    display: none;
+    padding: 36px 0;
+  }
+
+  .comp-panel.active { display: block; }
+
+  .comp-example {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+  }
+
+  @media (max-width: 640px) {
+    .comp-example { grid-template-columns: 1fr; }
+  }
+
+  .comp-box {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .comp-box-header {
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .comp-box-header.good { background: var(--green-bg); border-bottom-color: var(--green-border); }
+  .comp-box-header.shallow { background: var(--red-bg); border-bottom-color: var(--red-border); }
+
+  .comp-box-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .comp-box-label.good { color: var(--green); }
+  .comp-box-label.shallow { color: var(--red); }
+
+  .comp-box-icon { font-size: 14px; }
+
+  .comp-box-body {
+    padding: 20px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.7;
+  }
+
+  .comp-box-body strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .comp-question-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    opacity: 0.75;
+  }
+
+  .comp-question-text {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 28px;
+    font-style: italic;
+    padding-left: 16px;
+    border-left: 2px solid var(--border-strong);
+  }
+
+  .comp-why {
+    margin-top: 8px;
+    font-size: 12.5px;
+    font-weight: 300;
+    color: var(--cream-muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── BEST PRACTICES ── */
+  .practices-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 48px;
+  }
+
+  .practice-item {
+    display: flex;
+    gap: 24px;
+    padding: 28px 32px;
+    background: var(--bg3);
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .practice-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .practice-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .practice-content { flex: 1; }
+
+  .practice-title {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .practice-body {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.65;
+  }
+
+  /* ── WHAT HAPPENS AFTER ── */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 48px;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 28px;
+    padding: 0 0 40px 0;
+    position: relative;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s, transform 0.4s;
+  }
+
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+
+  .timeline-dot {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border-strong);
+    background: var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-dot-inner {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.6;
+  }
+
+  .timeline-content { flex: 1; padding-top: 8px; }
+
+  .timeline-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 6px;
+  }
+
+  .timeline-body {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--cream-dim);
+    line-height: 1.65;
+  }
+
+  /* ── CLOSING ── */
+  .closing {
+    text-align: center;
+    padding: 100px 32px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .closing-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream-dim);
+    max-width: 640px;
+    margin: 0 auto 48px;
+    line-height: 1.5;
+  }
+
+  .closing-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  /* Nav */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15,14,12,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--cream);
+  }
+
+  .nav-brand span { color: var(--gold); }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-light); }
+
+  @media (max-width: 600px) {
+    .nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .demo-body { padding: 24px 20px; }
+    .section { padding: 72px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">ELE<span>M</span>ENT</div>
+  <ul class="nav-links">
+    <li><a href="#what-it-is">The Experience</a></li>
+    <li><a href="#demo">Live Demo</a></li>
+    <li><a href="#examples">Examples</a></li>
+    <li><a href="#tips">Best Practices</a></li>
+    <li><a href="#avoid">What to Avoid</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Before You Begin</div>
+  <h1 class="hero-title">This is not<br><em>a test.</em></h1>
+  <p class="hero-sub">The following is a quick introduction to the ELEMENT Understanding Assessment system.</p>
+  <div class="hero-cta" style="cursor:default; pointer-events:none;">Scroll To Continue</div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- WHAT IT IS -->
+<section class="section" id="what-it-is">
+  <div class="section-label">The Experience</div>
+  <h2 class="section-heading">Three things you<br>should know <em>first.</em></h2>
+  <p class="section-body">ELEMENT works differently from any assessment you've encountered. These three principles explain what it's actually measuring and how.</p>
+
+  <div class="truths-grid">
+    <div class="truth-card">
+      <div class="truth-number">01</div>
+      <div class="truth-title">It measures how you think, not just what you know.</div>
+      <div class="truth-body">Recall is easy to fake. What ELEMENT is looking for is the connections you make: why something works, when it breaks down, what you'd do when standard approaches fail.</div>
+    </div>
+    <div class="truth-card">
+      <div class="truth-number">02</div>
+      <div class="truth-title">The conversation is the assessment. There are no trick questions.</div>
+      <div class="truth-body">There's no hidden correct answer being fished for. An honest, considered response will always outperform a polished but hollow one.</div>
+    </div>
+    <div class="truth-card">
+      <div class="truth-number">03</div>
+      <div class="truth-title">Saying "I'm not sure" is a strength, not a weakness.</div>
+      <div class="truth-body">Knowing the limits of your understanding is itself a form of expertise. Participants who acknowledge uncertainty get more accurate results than those who bluff through it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="section" id="demo">
+  <div class="section-label">What It Looks Like</div>
+  <h2 class="section-heading">A typical<br><em>exchange.</em></h2>
+  <p class="section-body">Here's a condensed example of what an ELEMENT conversation looks like. Questions build from what you've said, and a short multiple-choice question drops in mid-conversation to maintain momentum.</p>
+
+  <div class="demo-wrapper">
+    <div class="demo-header">
+      <div class="demo-dot"></div>
+      <div class="demo-dot"></div>
+      <div class="demo-dot"></div>
+      <div class="demo-header-titles">
+        <div class="demo-title-bar">ELEMENT Assessment: Sample Exchange</div>
+        <div class="demo-subtitle-bar">Neuropharmacology</div>
+      </div>
+    </div>
+    <div class="demo-body" id="demo-body">
+
+      <div class="msg" id="m1">
+        <div class="msg-avatar element">EL</div>
+        <div class="msg-content">
+          <div class="msg-sender element">ELEMENT</div>
+          <div class="msg-text">I want to start somewhere that tends to open things up. In neuropharmacology, there's often a meaningful gap between what a drug does at the receptor level and what actually happens to the patient over time. How do you think about that relationship? Where does it get complicated?</div>
+        </div>
+      </div>
+
+      <div class="msg" id="m2">
+        <div class="msg-avatar user">YOU</div>
+        <div class="msg-content">
+          <div class="msg-sender user">You</div>
+          <div class="msg-text">That gap is something I think about a lot. At the receptor level you're dealing with binding affinity, on-rates, off-rates, functional selectivity if it's a GPCR. But translating that to clinical effect requires crossing a lot of additional layers: distribution into the CNS, which is already a significant filter; what the target is actually doing in the circuit; whether there are compensatory mechanisms that will adapt around the intervention. The part that gets complicated fastest is time. A drug's receptor-level activity is essentially static, but the system it's acting on is dynamic. Receptors desensitize, circuits reorganize, tolerance develops through mechanisms that may have nothing to do with the original target. So the receptor-level profile tells you a lot about what will happen acutely. It tells you much less about what will happen after four weeks of continuous exposure. That mismatch between acute pharmacology and chronic clinical effect is where a lot of CNS drug development has failed historically.</div>
+        </div>
+      </div>
+
+      <div class="msg" id="m3">
+        <div class="msg-avatar element">EL</div>
+        <div class="msg-content">
+          <div class="msg-sender element">ELEMENT</div>
+          <div class="msg-text">You drew a distinction between acute receptor-level activity and what happens chronically when the system adapts. Can you take me deeper into the desensitization piece specifically? When you say tolerance develops through mechanisms that may have nothing to do with the original target, what are you pointing at?</div>
+        </div>
+      </div>
+
+      <div class="mcq-block" id="m4">
+        <div class="mcq-toggle" onclick="toggleMcq(this)">
+          <div class="mcq-toggle-left">
+            <span class="mcq-label">Quick Multiple Choice Question</span>
+            <span class="mcq-toggle-hint">click to expand</span>
+          </div>
+          <span class="mcq-arrow">▼</span>
+        </div>
+        <div class="mcq-body">
+          <div class="mcq-question">Which of the following is the primary molecular mechanism underlying rapid (short-term) GPCR desensitization?</div>
+          <div class="mcq-options">
+            <div class="mcq-option" onclick="selectMcq(this)"><span class="opt-letter">A</span> Downregulation of receptor mRNA transcription via nuclear factor signaling</div>
+            <div class="mcq-option" onclick="selectMcq(this)"><span class="opt-letter">B</span> Receptor phosphorylation by GRKs followed by β-arrestin binding and G-protein uncoupling</div>
+            <div class="mcq-option" onclick="selectMcq(this)"><span class="opt-letter">C</span> Irreversible covalent modification of the receptor's ligand-binding domain</div>
+            <div class="mcq-option" onclick="selectMcq(this)"><span class="opt-letter">D</span> Clathrin-independent receptor sequestration in lipid rafts</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg" id="m5">
+        <div class="msg-avatar user">YOU</div>
+        <div class="msg-content">
+          <div class="msg-sender user">You</div>
+          <div class="msg-text">What I'm pointing at is that tolerance is often talked about as if it's a single thing, but it isn't. There are at least a few distinct mechanisms running on different timescales. Short-term desensitization is receptor-autonomous: GRK phosphorylation, beta-arrestin recruitment, uncoupling from the G-protein. That happens within minutes and is largely reversible on washout. Longer-term you get receptor internalization via clathrin-coated pits, which takes hours. And then at the slowest timescale you have transcriptional downregulation, where the cell reduces how many receptors it makes in the first place. All three of those are happening at the original target. But then you also have adaptations that are entirely downstream: changes in second-messenger tone, alterations in the density or sensitivity of ion channels, reorganization of circuit-level connectivity. Those adaptations may persist long after the drug is cleared and the receptor has fully resensitized. That's why you can have withdrawal phenomena or protracted effects that don't map cleanly onto the receptor pharmacology. The system has adapted around the drug in ways the receptor profile can't predict.</div>
+        </div>
+      </div>
+
+      <div class="msg" id="m6">
+        <div class="msg-avatar element">EL</div>
+        <div class="msg-content">
+          <div class="msg-sender element">ELEMENT</div>
+          <div class="msg-text">You mentioned that downstream adaptations can persist after the receptor has fully resensitized. Does that mean the timescale of recovery from those circuit-level changes is essentially unpredictable from the drug's pharmacokinetic profile alone? And if so, how do you think about what governs that recovery timeline?</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div style="margin-top: 24px; padding: 20px 24px; border: 1px solid var(--border); background: var(--bg3);">
+    <p style="font-size: 13px; font-weight: 300; color: var(--cream-muted); line-height: 1.7;">
+      <strong style="color: var(--gold); font-weight: 500;">Notice:</strong> The conversation grows from <em>your</em> words. The multiple choice question is a brief interlude. Answer it and move on. The follow-up question will pick up directly from what you said.
+    </p>
+  </div>
+</section>
+
+<!-- COMPARISON EXAMPLES -->
+<section class="section" id="examples">
+  <div class="section-label">Response Quality</div>
+  <h2 class="section-heading">What <em>good answers</em><br>actually look like.</h2>
+
+  <p class="section-body">Think of an ELEMENT assessment as a cross between an interview, an essay exam, and a chance to externalize your thinking. The clearest signal of understanding is how you reason, not how much you can recall. That reasoning needs room. A two-sentence response is the equivalent of handing in a blank essay. Expand on your ideas, point out connections, think out loud. The examples below show what that looks like in practice.</p>
+
+  <div class="comparison-section">
+    <div class="comparison-tabs">
+      <button class="comp-tab active" onclick="switchTab(0)">Example 1: Explaining a concept</button>
+      <button class="comp-tab" onclick="switchTab(1)">Example 2: Handling uncertainty</button>
+      <button class="comp-tab" onclick="switchTab(2)">Example 3: Novel scenario</button>
+    </div>
+
+    <!-- PANEL 1 -->
+    <div class="comp-panel active" id="panel-0">
+      <div class="comp-question-label">The Question</div>
+      <div class="comp-question-text">"You mentioned synaptic plasticity. How would you explain why LTP doesn't just keep strengthening indefinitely?"</div>
+      <div class="comp-example">
+        <div class="comp-box">
+          <div class="comp-box-header good">
+            <span class="comp-box-icon">✦</span>
+            <span class="comp-box-label good">Reveals Understanding</span>
+          </div>
+          <div class="comp-box-body">
+            The simple answer is that there have to be homeostatic constraints. If every synapse that fired kept potentiating without bound, the system would saturate. What makes LTP interesting is that it operates within a bidirectional plasticity framework. The same synaptic machinery that enables LTP also enables LTD, and the direction of change depends on the magnitude and pattern of calcium influx through NMDA receptors. High, rapid calcium favors LTP via CaMKII activation; lower, more sustained calcium favors LTD through phosphatase activation. Beyond that, there's synaptic scaling, a slower homeostatic process where neurons globally adjust the strength of their inputs to maintain a target firing rate. So LTP is locally Hebbian, but it exists inside a system that has multiple negative feedback mechanisms to prevent runaway excitation. The interesting clinical question is what happens when those brakes are impaired, which connects to some of the hypotheses around seizure disorders and certain forms of neurodegeneration.
+            <div class="comp-why">Why this works: explains the mechanism at the molecular level, situates LTP within a broader regulatory framework, identifies what's actually interesting about the constraint, and connects to clinical relevance without being prompted.</div>
+          </div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-box-header shallow">
+            <span class="comp-box-icon">○</span>
+            <span class="comp-box-label shallow">Surface-Level</span>
+          </div>
+          <div class="comp-box-body">
+            LTP is a form of synaptic strengthening that's important for memory. It doesn't go on forever because the brain has regulatory mechanisms that keep things in balance. There are also opposing processes like LTD.
+            <div class="comp-why">Why this falls short: names the opposing process without explaining it, invokes "regulatory mechanisms" without describing any, and provides no reasoning about how or why the balance is maintained. The words are correct but nothing is actually explained.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2 -->
+    <div class="comp-panel" id="panel-1">
+      <div class="comp-question-label">The Question</div>
+      <div class="comp-question-text">"How confident are you that the dosing model you described would translate reliably across different patient populations?"</div>
+      <div class="comp-example">
+        <div class="comp-box">
+          <div class="comp-box-header good">
+            <span class="comp-box-icon">✦</span>
+            <span class="comp-box-label good">Reveals Understanding</span>
+          </div>
+          <div class="comp-box-body">
+            Moderately confident for the populations the model was derived from. Less so once you start moving outside that envelope. The main concern is pharmacokinetic variability the model probably doesn't fully account for. CYP450 polymorphisms are a real issue: CYP2D6 especially has well-documented poor metabolizer and ultrarapid metabolizer phenotypes that vary significantly by ancestry, and if the derivation cohort was predominantly one population, the model's parameters could be systematically off for others. There's also the question of comorbidity load. The model was built on relatively clean trial populations, and real-world patients often have hepatic or renal impairments that change clearance in ways that aren't well-parameterized. I'd apply it as a starting point but treat the confidence intervals as optimistic, and I'd want to build in early monitoring checkpoints rather than assuming the predictions are reliable until I had confirming data from the actual population I was working with.
+            <div class="comp-why">Why this works: identifies specific sources of uncertainty rather than generic hedging, names the precise mechanism (CYP2D6 polymorphism) and explains why it matters here, distinguishes between the model's derivation context and real-world application, and describes what they'd actually do differently in practice.</div>
+          </div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-box-header shallow">
+            <span class="comp-box-icon">○</span>
+            <span class="comp-box-label shallow">Surface-Level</span>
+          </div>
+          <div class="comp-box-body">
+            There could be some variation across populations, but the core principles are generally applicable. I've used similar models in different contexts and they've worked well. You'd want to monitor patients to make sure the dosing is appropriate.
+            <div class="comp-why">Why this falls short: acknowledges uncertainty without reasoning about it, substitutes experience claims for mechanistic explanation, and offers generic advice ("monitor patients") that reveals no specific understanding of what to watch for or why.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3 -->
+    <div class="comp-panel" id="panel-2">
+      <div class="comp-question-label">The Question</div>
+      <div class="comp-question-text">"Imagine the first-line pharmacological approach isn't available for this patient. How would your reasoning process work from there?"</div>
+      <div class="comp-example">
+        <div class="comp-box">
+          <div class="comp-box-header good">
+            <span class="comp-box-icon">✦</span>
+            <span class="comp-box-label good">Reveals Understanding</span>
+          </div>
+          <div class="comp-box-body">
+            The first thing I'd want to do is be explicit about <strong>why</strong> the first-line approach isn't available, because that determines a lot. Is it contraindicated because of a drug interaction, a patient-specific metabolic issue, or a tolerance problem? Each of those points in a different direction. If it's a drug interaction, I'd look at what the interacting drug is doing mechanistically and ask whether there's an alternative in the same class that doesn't share that interaction profile. If it's a tolerance problem, I'd think about whether we're dealing with pharmacokinetic tolerance (in which case a dosing strategy change might be the first move) versus true pharmacodynamic tolerance, which is a different problem entirely. More broadly, I'd try to reconstruct what the first-line drug is actually doing therapeutically, at the receptor or systems level, and ask what other mechanisms could achieve a similar functional output. Often there are second-line agents that work on adjacent parts of the same pathway rather than the same receptor, and those are worth considering before jumping to mechanistically unrelated options. The failure mode I try to avoid is reaching for the next drug on a formulary list without asking what it's actually doing. You can end up with something that looks like an alternative but operates on a completely different assumption about the pathophysiology.
+            <div class="comp-why">Why this works: distinguishes meaningfully between different reasons the first-line fails, demonstrates understanding at the mechanistic rather than descriptive level, articulates a genuine reasoning process, and names a specific failure mode. All signs of practiced expert thinking rather than retrieved procedure.</div>
+          </div>
+        </div>
+        <div class="comp-box">
+          <div class="comp-box-header shallow">
+            <span class="comp-box-icon">○</span>
+            <span class="comp-box-label shallow">Surface-Level</span>
+          </div>
+          <div class="comp-box-body">
+            I would consult the relevant guidelines and look at what second-line options are available. I'd consider the patient's specific situation and choose the most appropriate alternative. In my experience there's usually a good option available.
+            <div class="comp-why">Why this falls short: describes external actions rather than internal reasoning, provides no insight into how alternatives would actually be evaluated, and ends with a confidence claim that is entirely unsupported. This answers the surface of the question while revealing nothing about understanding.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEST PRACTICES -->
+<section class="section" id="tips">
+  <div class="section-label">Best Practices</div>
+  <h2 class="section-heading">Six ways to show<br>your best <em>thinking.</em></h2>
+
+  <div class="practices-list">
+    <div class="practice-item">
+      <div class="practice-icon">↳</div>
+      <div class="practice-content">
+        <div class="practice-title">Think out loud.</div>
+        <div class="practice-body">ELEMENT can only assess what it can observe. If your reasoning is happening silently, it's invisible. Walk through your thought process. Even when you're uncertain. Especially when you're uncertain.</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="practice-icon">⇄</div>
+      <div class="practice-content">
+        <div class="practice-title">Connect ideas to other ideas.</div>
+        <div class="practice-body">Strong understanding shows itself through connections: to adjacent concepts, to practical applications, to edge cases or exceptions. Don't just answer the question in isolation. Show how it fits into a larger picture.</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="practice-icon">✗</div>
+      <div class="practice-content">
+        <div class="practice-title">Don't pad answers with credentials or experience claims.</div>
+        <div class="practice-body">"I have 15 years of experience with this" tells ELEMENT nothing. Demonstrated reasoning tells it everything. Use the space for reasoning, not biography. Let your answers speak for your expertise.</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="practice-icon">△</div>
+      <div class="practice-content">
+        <div class="practice-title">Answer the MCQ questions quickly and move on.</div>
+        <div class="practice-body">The multiple-choice questions that appear mid-conversation are brief and intentional. They're not trick questions. Choose your best answer and return your focus to the conversation. Don't overthink them.</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="practice-icon">◎</div>
+      <div class="practice-content">
+        <div class="practice-title">Disagree with the question if you think it's flawed.</div>
+        <div class="practice-body">If a question contains an assumption you think is wrong, say so and explain why. Critically engaging with how a question is framed is a high signal of expertise. ELEMENT values intellectual honesty over agreeableness.</div>
+      </div>
+    </div>
+
+    <div class="practice-item">
+      <div class="practice-icon">—</div>
+      <div class="practice-content">
+        <div class="practice-title">Approach it like a high-stakes interview combined with an essay exam.</div>
+        <div class="practice-body">ELEMENT is designed to feel natural, but that doesn't mean casual. You are being assessed, and the goal is to put your understanding on display, not just have a relaxed chat. The conversational format exists to reduce anxiety and surface real thinking, not to lower the bar. Bring the same depth and intentionality you'd bring to a serious written exam or a professional oral examination.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO AVOID -->
+<section class="section" id="avoid">
+  <div class="section-label">Common Pitfalls</div>
+  <h2 class="section-heading">What to <em>avoid.</em></h2>
+  <p class="section-body">These patterns consistently produce less accurate and less favorable assessments. ELEMENT is specifically designed to detect them.</p>
+
+  <div class="practices-list">
+    <div class="practice-item" style="border-left: 2px solid var(--red-border);">
+      <div class="practice-icon">✗</div>
+      <div class="practice-content">
+        <div class="practice-title">Very short answers.</div>
+        <div class="practice-body">One or two sentences is rarely sufficient. If you were writing an essay exam, you wouldn't hand in two sentences and consider it done. ELEMENT's conversational format can tempt people to answer briefly and wait for the next question. Resist that instinct. Give your answer the space it deserves. If you have more to say, say it.</div>
+      </div>
+    </div>
+
+    <div class="practice-item" style="border-left: 2px solid var(--red-border);">
+      <div class="practice-icon">✗</div>
+      <div class="practice-content">
+        <div class="practice-title">Padding without substance.</div>
+        <div class="practice-body">Length is not the same as depth. Restating the question, adding filler phrases, or repeating what you already said in different words does not add evidence of understanding; ELEMENT will recognize it. The goal is more thinking, not more words. Every sentence should be doing some work.</div>
+      </div>
+    </div>
+
+    <div class="practice-item" style="border-left: 2px solid var(--red-border);">
+      <div class="practice-icon">✗</div>
+      <div class="practice-content">
+        <div class="practice-title">Avoiding the question.</div>
+        <div class="practice-body">Pivoting to a topic you're more comfortable with, giving a generic answer that doesn't address what was actually asked, or answering a simpler version of the question are all patterns ELEMENT tracks. If you're uncertain about something specific, say so, then engage with it anyway. Honest uncertainty is far more informative than an evasive answer that sounds confident.</div>
+      </div>
+    </div>
+
+    <div class="practice-item" style="border-left: 2px solid var(--red-border);">
+      <div class="practice-icon">✗</div>
+      <div class="practice-content">
+        <div class="practice-title">Substituting credentials for reasoning.</div>
+        <div class="practice-body">"I have a PhD in this" or "I've been doing this for 20 years" tells ELEMENT nothing about what you actually understand. The assessment has no interest in your biography. Claims about expertise need to be demonstrated through reasoning, not stated. Show, don't assert.</div>
+      </div>
+    </div>
+
+    <div class="practice-item" style="border-left: 2px solid var(--red-border);">
+      <div class="practice-icon">✗</div>
+      <div class="practice-content">
+        <div class="practice-title">Overclaiming certainty.</div>
+        <div class="practice-body">Presenting confident, well-articulated answers in areas where real uncertainty exists is one of the most reliably detected patterns in ELEMENT assessments. The system will probe the edges of any claim. If your certainty is shallow, follow-up questions will surface that quickly. An answer that collapses under a single follow-up is scored more negatively than one that acknowledged its limits from the start.</div>
+      </div>
+    </div>
+  </div>
+
+<!-- WHAT HAPPENS AFTER -->
+<section class="section" id="after">
+  <div class="section-label">After the Conversation</div>
+  <h2 class="section-heading">What you'll<br><em>receive.</em></h2>
+  <p class="section-body">Your participation in the pilot involves three assessments, two surveys, and a personal report for each domain you're assessed in.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Pre-Pilot Survey</div>
+        <div class="timeline-body">Before your first assessment, you'll complete a short survey covering your background, domain expertise, and prior experience with assessments. This provides important context for interpreting your results and takes approximately 10 minutes. You won't be able to begin your assessments until this is complete.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Three Assessments: 45 Minutes to 1 Hour Each</div>
+        <div class="timeline-body">You'll complete three ELEMENT assessments across different domains. Each concludes naturally when sufficient evidence has been gathered. There's no strict cutoff. ELEMENT will close the conversation warmly, without announcing a score or level. Plan for up to an hour per session and give yourself uninterrupted time.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Your Personal Reports</div>
+        <div class="timeline-body">After each assessment you'll receive a detailed written report covering your understanding in that domain: specific strengths observed, areas for development, and the reasoning behind the assessment. These are designed to be useful, not a score printout.</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"><div class="timeline-dot-inner"></div></div>
+      <div class="timeline-content">
+        <div class="timeline-title">Post-Pilot Survey</div>
+        <div class="timeline-body">Once you've completed all three assessments, you'll be asked to complete a final survey about your overall experience: how the format felt, how it compared to traditional assessments, and any feedback you'd like to share. This takes approximately 10 minutes and directly informs ELEMENT's ongoing research and development.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<div class="closing">
+  <p class="closing-quote">"The goal isn't to catch you out. It's to understand how you think. Show your reasoning and the rest takes care of itself."</p>
+  <div class="closing-mark">ELEMENT</div>
+</div>
+
+<script>
+  // Intersection observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.truth-card, .msg, .mcq-block, .practice-item, .timeline-item').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Stagger delays for truth cards
+  document.querySelectorAll('.truth-card').forEach((card, i) => {
+    card.style.transitionDelay = `${i * 0.12}s`;
+  });
+
+  // Stagger delays for demo messages
+  document.querySelectorAll('.msg, .mcq-block').forEach((el, i) => {
+    el.style.transitionDelay = `${i * 0.1}s`;
+  });
+
+  // Stagger practice items
+  document.querySelectorAll('.practice-item').forEach((item, i) => {
+    item.style.transitionDelay = `${i * 0.08}s`;
+  });
+
+  // Stagger timeline
+  document.querySelectorAll('.timeline-item').forEach((item, i) => {
+    item.style.transitionDelay = `${i * 0.1}s`;
+  });
+
+  // Tab switching
+  function switchTab(index) {
+    document.querySelectorAll('.comp-tab').forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.comp-panel').forEach((p, i) => {
+      p.classList.toggle('active', i === index);
+    });
+  }
+
+  // MCQ option selection
+  function selectMcq(el) {
+    el.closest('.mcq-options').querySelectorAll('.mcq-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  // MCQ block expand/collapse
+  function toggleMcq(toggleEl) {
+    const block = toggleEl.closest('.mcq-block');
+    const hint = toggleEl.querySelector('.mcq-toggle-hint');
+    const isExpanded = block.classList.toggle('expanded');
+    hint.textContent = isExpanded ? 'click to collapse' : 'click to expand';
+  }
+</script>
+</body>
+</html>
